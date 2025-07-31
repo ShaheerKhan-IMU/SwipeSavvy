@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import Testimonials from "../UI/testimonials";
-import SearchBox from "../UI/searchBox";
+import Testimonials from "../ui/testimonials";
+import SearchBox from "../ui/searchBox";
 
 const First = () => {
   return (
@@ -54,7 +54,7 @@ const First = () => {
                   borderRadius: 1,
                 }}
               >
-                <Link href="http://localhost:3000/">
+                <Link href="/">
                   <Image
                     src="/ImagesData/logo.png"
                     width={150}

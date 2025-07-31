@@ -10,15 +10,49 @@ export default function Verify() {
   const router = useRouter();
   const [business, setBusiness] = useState<any>(null);
 
+  const apiKey = "AIzaSyBQ3RH7SbmPFpee6g2yext-zL45YtGv9Fo";
+
   useEffect(() => {
-    if (businessQuery) {
-      setBusiness({
-        name: businessQuery,
-        address: "ADDRESS",
-        phone: "PHONE NUMBER",
-        image: "https://via.placeholder.com/150",
-      });
-    }
+    const fetchBusinessData = async () => {
+      if (!businessQuery) return;
+
+      const response = await fetch(
+        "https://places.googleapis.com/v1/places:searchText",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Goog-Api-Key": apiKey,
+            "X-Goog-FieldMask":
+              "places.displayName,places.formattedAddress,places.location,places.photos,places.id,places.nationalPhoneNumber",
+          },
+          body: JSON.stringify({
+            textQuery: businessQuery,
+            maxResultCount: 1,
+            languageCode: "en",
+          }),
+        }
+      );
+
+      const result = await response.json();
+      const place = result?.places?.[0];
+
+      if (place) {
+        const photoReference = place.photos?.[0]?.name;
+        const photoUrl = photoReference
+          ? `https://places.googleapis.com/v1/${photoReference}/media?maxHeightPx=400&key=${apiKey}`
+          : "https://via.placeholder.com/150";
+
+        setBusiness({
+          name: place.displayName?.text,
+          address: place.formattedAddress,
+          phone: place.nationalPhoneNumber || "Not available",
+          image: photoUrl,
+        });
+      }
+    };
+
+    fetchBusinessData();
   }, [businessQuery]);
 
   return (
@@ -69,7 +103,7 @@ export default function Verify() {
                   borderRadius: 1,
                 }}
               >
-                <Link href="http://localhost:3000/">
+                <Link href="/">
                   <Image
                     src="/ImagesData/logo.png"
                     width={150}
@@ -103,12 +137,13 @@ export default function Verify() {
           <div
             style={{
               width: "550px",
-              height: "420px",
+              maxHeight: "600px",
               backgroundColor: "white",
               borderRadius: "10px",
               padding: "25px",
               marginTop: "100px",
               marginLeft: "440px",
+              overflowY: "auto",
             }}
           >
             <div>
@@ -187,7 +222,13 @@ export default function Verify() {
                       }}
                     >
                       <button
-                        onClick={() => router.push("/form")}
+                        onClick={() =>
+                          router.push(
+                            `/form?business=${encodeURIComponent(
+                              business.name
+                            )}`
+                          )
+                        }
                         style={{
                           backgroundColor: "#16a34a",
                           color: "white",

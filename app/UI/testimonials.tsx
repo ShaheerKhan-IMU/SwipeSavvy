@@ -1,4 +1,5 @@
 import React from "react";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const Testimonials = () => {
   return (
@@ -9,7 +10,6 @@ const Testimonials = () => {
       data-bs-interval="4000"
       style={{ maxWidth: "800px", margin: "50px auto" }}
     >
-      {/* Dots */}
       <div className="carousel-indicators">
         <button
           type="button"
@@ -39,7 +39,6 @@ const Testimonials = () => {
         ></button>
       </div>
 
-      {/* Slides */}
       <div className="carousel-inner">
         <div className="carousel-item active">
           <div
@@ -182,7 +181,6 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Arrows */}
       <button
         className="carousel-control-prev"
         type="button"
@@ -204,5 +202,4 @@ const Testimonials = () => {
     </div>
   );
 };
-
 export default Testimonials;

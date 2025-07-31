@@ -60,7 +60,7 @@ export default function Terms() {
                   borderRadius: 1,
                 }}
               >
-                <Link href="http://localhost:3000/">
+                <Link href="/">
                   <Image
                     src="/ImagesData/logo.png"
                     width={150}
@@ -94,12 +94,13 @@ export default function Terms() {
           <div
             style={{
               width: "550px",
-              height: "425px",
+              maxHeight: "350px",
               backgroundColor: "white",
               borderRadius: "10px",
               padding: "25px",
               marginTop: "100px",
               marginLeft: "440px",
+              overflowY: "auto",
             }}
           >
             <div

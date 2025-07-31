@@ -9,14 +9,11 @@ const SearchBox = () => {
 
   const handleSearch = () => {
     if (query.trim()) {
-      router.push(`/verify?business=${encodeURIComponent(query)}`);
+      router.push(`verify?business=${encodeURIComponent(query)}`);
     }
     console.log(query);
   };
 
-  useEffect(() => {
-    import("bootstrap/dist/js/bootstrap.bundle.min");
-  }, []);
   return (
     <div
       style={{
@@ -88,12 +85,6 @@ const SearchBox = () => {
               cursor: "pointer",
               transition: "background-color 0.3s ease",
             }}
-            onMouseOver={(e) =>
-              (e.currentTarget.style.backgroundColor = "#1d4ed8")
-            }
-            onMouseOut={(e) =>
-              (e.currentTarget.style.backgroundColor = "#2563eb")
-            }
           >
             🔍
           </button>

@@ -1,159 +1,9 @@
-// "use client";
-// import { useEffect, useState } from "react";
-
-// export default function Success() {
-//   const [username, setUsername] = useState("");
-
-//   useEffect(() => {
-//     const response = localStorage.getItem("userdata");
-//     if (response) {
-//       try {
-//         const parsed = JSON.parse(response);
-//         setUsername(parsed.name);
-//       } catch (err) {
-//         console.error("Error parsing userdata from localStorage:", err);
-//       }
-//     }
-//   }, []);
-
-//   return (
-//     <div
-//       style={{
-//         minHeight: "100vh", // min-h-screen
-//         display: "flex", // flex
-//         flexDirection: "column", // flex-col
-//         justifyContent: "center", // justify-center
-//         alignItems: "center", // items-center
-//         backgroundColor: "#ffffff", // bg-white
-//         textAlign: "center", // text-center
-//         padding: "1.5rem", // p-6
-//       }}
-//     >
-//       <h1
-//         style={{
-//           fontSize: "2.25rem", // text-4xl
-//           lineHeight: "2.5rem",
-//           fontWeight: "700", // font-bold
-//           marginBottom: "1rem", // mb-4
-//         }}
-//       >
-//         Congratulations {username} 🎉 <br/><br/>Your Business Is Now Live on Swipe Savvy!
-//       </h1>
-
-//       <p
-//         style={{
-//           marginBottom: "1.5rem", // mb-6
-//           fontSize: "1rem",
-//           lineHeight: "1.5rem",
-//         }}
-//       >
-//         Make the most of it with a limited-time upgrade — first month free + 50%
-//         off for life.
-//       </p>
-
-//       <div
-//         style={{
-//           display: "flex",
-//           flexDirection: "row", // flex-col (mobile)
-//           gap: "1rem", // gap-4
-//           width: "100%", // w-full
-//           maxWidth: "48rem", // max-w-3xl
-//         }}
-//       >
-//         {/* Free Plan Box */}
-//         <div
-//           style={{
-//             backgroundColor: "#d1fae5", // bg-green-100
-//             padding: "1rem", // p-4
-//             borderRadius: "0.5rem", // rounded
-//             boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)", // shadow
-//             width: "100%", // w-full
-//           }}
-//         >
-//           <h2 style={{ fontWeight: "700" /* font-bold */ }}>
-//             Free Plan Active
-//           </h2>
-//           <ul
-//             style={{
-//               listStyle: "disc",
-//               marginLeft: "1rem",
-//               marginTop: "0.5rem",
-//             }}
-//           >
-//             <li>Listed in Swipe Savvy</li>
-//             <li>Rewards-ready listing</li>
-//           </ul>
-//         </div>
-
-//         {/* Upgrade Plan Box */}
-//         <div
-//           style={{
-//             backgroundColor: "#fef3c7", // bg-yellow-100
-//             padding: "1rem", // p-4
-//             borderRadius: "0.5rem", // rounded
-//             boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)", // shadow
-//             width: "100%", // w-full
-//           }}
-//         >
-//           <h2 style={{ fontWeight: "700" /* font-bold */ }}>Upgrade Offer</h2>
-//           <ul
-//             style={{
-//               listStyle: "disc",
-//               marginLeft: "1rem",
-//               marginTop: "0.5rem",
-//             }}
-//           >
-//             <li>Featured placement</li>
-//             <li>Run 2x rewards promotions</li>
-//             <li>Sync with Google, Yelp, Facebook</li>
-//             <li>Performance analytics</li>
-//           </ul>
-
-//           <p style={{ marginTop: "0.5rem" }}>
-//             💸 Try it FREE for 30 days — then $34.50/mo
-//           </p>
-
-//           <div
-//             style={{
-//               display: "flex",
-//               justifyContent: "space-between",
-//               marginTop: "1rem", // mt-4
-//             }}
-//           >
-//             <button
-//               style={{
-//                 backgroundColor: "#ef4444", // bg-red-500
-//                 color: "#ffffff", // text-white
-//                 padding: "0.5rem 1rem", // px-4 py-2
-//                 borderRadius: "0.375rem", // rounded
-//                 border: "none",
-//                 cursor: "pointer",
-//               }}
-//             >
-//               🔥 Yes, Upgrade Me
-//             </button>
-
-//             <button
-//               style={{
-//                 color: "#4b5563", // text-gray-600
-//                 padding: "0.5rem 1rem", // px-4 py-2
-//                 backgroundColor: "transparent",
-//                 border: "none",
-//                 cursor: "pointer",
-//               }}
-//             >
-//               ➡️ No Thanks
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import confetti from "canvas-confetti";
 
 export default function Success() {
   const [username, setUsername] = useState("");
@@ -169,172 +19,206 @@ export default function Success() {
         console.error("Error parsing userdata from localStorage:", err);
       }
     }
+    confetti({
+      particleCount: 250,
+      spread: 200,
+      origin: { y: 0.6 },
+    });
   }, []);
 
   return (
     <div
       style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#ffffff",
-        textAlign: "center",
-        padding: "1.5rem",
+        background: "linear-gradient(135deg, #fbba12, #60bb41)",
+        width: "100%",
+        height: "100vh",
+        position: "relative",
       }}
     >
-      <h1
+      <div
         style={{
-          fontSize: "2.25rem",
-          lineHeight: "2.5rem",
-          fontWeight: "700",
-          marginBottom: "1rem",
+          backgroundColor: "rgba(0, 0, 0, 0.3)",
+          position: "absolute",
+          backdropFilter: "blur(6px)",
+          WebkitBackdropFilter: "blur(6px)",
+          width: "100%",
+          height: "100%",
         }}
-      >
-        Congratulations {username} 🎉 <br />
-        <br />
-        Your Business Is Now Live on Swipe Savvy!
-      </h1>
-
-      <p
-        style={{
-          marginBottom: "1.5rem",
-          fontSize: "1rem",
-          lineHeight: "1.5rem",
-        }}
-      >
-        Make the most of it with a limited-time upgrade — first month free + 50%
-        off for life.
-      </p>
+      />
 
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "1rem",
+          position: "relative",
+          zIndex: 2,
           width: "100%",
-          maxWidth: "48rem",
-          flexWrap: "wrap",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          textAlign: "center",
+          padding: "1rem",
         }}
       >
-        {/* Free Plan Box */}
-        <div
+        <nav
           style={{
-            backgroundColor: "#d1fae5",
-            padding: "1rem",
-            borderRadius: "0.5rem",
-            boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
-            width: "100%",
+            position: "absolute",
+            top: 20,
+            left: 20,
           }}
         >
-          <h2 style={{ fontWeight: "700", fontSize: "1.25rem" }}>
-            Your current plan is: Free Plan
-          </h2>
-          <ul
-            style={{
-              listStyle: "disc",
-              marginLeft: "1rem",
-              marginTop: "0.5rem",
-            }}
-          >
-            <li>Listed in Swipe Savvy</li>
-            <li>Rewards-ready listing</li>
-          </ul>
-        </div>
+          <Link href="/">
+            <Image
+              src="/ImagesData/logo.png"
+              width={120}
+              height={120}
+              alt="Logo"
+            />
+          </Link>
+        </nav>
 
-        {/* Upgrade Plan Box */}
-        <div
+        <h1
           style={{
-            backgroundColor: "#fef3c7",
-            padding: "1rem",
-            borderRadius: "0.5rem",
-            boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
-            width: "100%",
+            fontSize: "2.5rem",
+            fontWeight: "700",
+            color: "#ffffff",
+            marginBottom: "1rem",
           }}
         >
-          <h2
-            style={{
-              fontWeight: "700",
-              fontSize: "1.25rem",
-              marginBottom: "0.5rem",
-            }}
-          >
-            Upgrade to Shop Savvy and unlock:
-          </h2>
-          <ul
-            style={{
-              listStyle: "disc",
-              marginLeft: "1rem",
-              marginBottom: "1rem",
-            }}
-          >
-            <li>Featured placement in our app</li>
-            <li>Run 2x rewards promotions</li>
-            <li>Sync your listing across Google, Yelp, Facebook & more</li>
-            <li>Access analytics and performance reports</li>
-          </ul>
+          🎉 Congratulations {username}!
+        </h1>
 
-          <p style={{ marginBottom: "1rem" }}>
-            💸 Try it FREE for 30 days — then $34.50/mo
-          </p>
+        <p
+          style={{
+            fontSize: "1.125rem",
+            color: "#f0f0f0",
+            maxWidth: "40rem",
+            marginBottom: "2rem",
+          }}
+        >
+          Your Business Is Now Live on Swipe Savvy!
+          <br />
+          Make the most of it with a limited-time upgrade — first month free +
+          50% off for life.
+        </p>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "1.5rem",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#1c5495",
+              padding: "1rem",
+              borderRadius: "0.75rem",
+              width: "18rem",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              textAlign: "left",
+            }}
+          >
+            <h2
+              style={{
+                fontWeight: "700",
+                fontSize: "1.25rem",
+                color: "#ffffff",
+              }}
+            >
+              Free Plan(Current Plan)
+            </h2>
+            <ul
+              style={{
+                listStyle: "disc",
+                marginLeft: "1.2rem",
+                marginTop: "0.5rem",
+                color: "#ffffff",
+              }}
+            >
+              <li>Listed in Swipe Savvy</li>
+              <li>Rewards-ready listing</li>
+            </ul>
+          </div>
 
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "0.5rem",
+              backgroundColor: "#ffe5ec",
+              padding: "1rem",
+              borderRadius: "0.75rem",
+              width: "18rem",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              textAlign: "left",
             }}
           >
-            <button
+            <h2
               style={{
-                backgroundColor: "#ef4444",
-                color: "#ffffff",
-                padding: "0.5rem 1rem",
-                borderRadius: "0.375rem",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                window.location.href = "https://stripe.com"; // Update to your actual Stripe link
+                fontWeight: "700",
+                fontSize: "1.25rem",
+                marginBottom: "0.5rem",
               }}
             >
-              Yes, Upgrade Me
-            </button>
+              Shop Savvy (Upgrade)
+            </h2>
+            <ul
+              style={{
+                listStyle: "disc",
+                marginLeft: "1.2rem",
+                marginBottom: "1rem",
+              }}
+            >
+              <li>Featured placement in app</li>
+              <li>Run 2x rewards promotions</li>
+              <li>Sync listing with Google, Yelp & more</li>
+              <li>Analytics & performance reports</li>
+            </ul>
 
-            <button
+            <p style={{ marginBottom: "1rem", fontWeight: "500" }}>
+              💸 Try FREE for 30 days — then $34.50/mo
+            </p>
+
+            <div
               style={{
-                color: "#4b5563",
-                padding: "0.5rem 1rem",
-                backgroundColor: "transparent",
-                border: "none",
-                cursor: "pointer",
+                display: "flex",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                gap: "0.5rem",
               }}
-              onClick={() => router.push("/")}
             >
-              ➡️ No Thanks
-            </button>
+              <button
+                style={{
+                  backgroundColor: "#d6336c",
+                  color: "#ffffff",
+                  padding: "0.5rem 1rem",
+                  borderRadius: "0.375rem",
+                  cursor: "pointer",
+                  border: "none",
+                }}
+                onClick={() => {
+                  window.location.href = "https://stripe.com";
+                }}
+              >
+                Yes, Upgrade Me
+              </button>
+
+              <button
+                style={{
+                  color: "#333",
+                  padding: "0.5rem 1rem",
+                  backgroundColor: "transparent",
+                  border: "1px solid #ccc",
+                  borderRadius: "0.375rem",
+                  cursor: "pointer",
+                }}
+                onClick={() => router.push("/")}
+              >
+                ➡️ No Thanks
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        style={{
-          marginTop: "3rem",
-          width: "100%",
-          maxWidth: "48rem",
-          textAlign: "left",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: "700",
-            marginBottom: "1rem",
-            paddingBottom: "0.5rem",
-          }}
-        >
-          What other merchants say
-        </h2>
       </div>
     </div>
   );
